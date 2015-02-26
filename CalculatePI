@@ -1,0 +1,96 @@
+#  File: CalculatePI.py
+
+#  Description:This program calls a function computePI within the main function and simulates the throw of a dart by generating random numbers for the x and y coordinates. It then compares this result with the value given by the math.pi function.
+
+#  Student Name:Kelsi Kamin
+
+#  Student UT EID:kk25676
+
+#  Course Name: CS 303E
+
+#  Unique Number: 53465
+
+#  Date Created:3/22/14
+
+#  Date Last Modified:3/24/14
+
+
+#import the math and random libraries so we can use math.pi, math.hypot, random
+
+import math
+import random
+
+#define the function that will return the calculated value of PI
+#this function takes the number of dart throws as the parameter
+
+def computePI (numThrows):
+  
+  #Imagine a 2x2 square dart board
+  #A circle of raduis 1 is drawn inside the square dart board
+  #hits is the variable that will track successful dart throws into the circle
+  
+  hits = 0
+
+  #generate random rumbers for each dart throw till we reach number of throws
+  #call the random.uniform function to assign values to the x,y coordinates
+  
+  for throws in range(1, numThrows+1):
+    xPos = random.uniform(-1.0, 1.0)
+    yPos = random.uniform(-1.0, 1.0)
+    
+  
+    #to see if the dart was thrown inside the circle
+    #use the math.hypot function with the random numbers generated above for xPos and YPos
+    #the math.hypot funtion returns the distance of a point with coordinates
+    #(xPos, yPos) from the center.
+    #the position of the dart from the center of the circle
+    #must be less than the radius of the circle
+    #Since the radius of the circle is 1 unit,
+    #we test to see if math.hypot value is < 1
+    #If it is < 1, increment hits by 1
+    #Repeat these steps till we reach total number of dart throws
+    
+    if math.hypot(xPos, yPos) < 1:
+      hits += 1
+    throws += 1
+
+  #PI/4 is equal to Number of hits / total Number of Dart Throws
+  #Calculated value of PI is equal to 4 times hits/total number of throws
+    
+  PI  =  4 * (hits / numThrows)
+  return PI
+
+def main():
+  
+
+  print("")
+  print("Computation of PI using Random Numbers")
+  print("")
+
+  #We are asked to calulate PI using number of throws equal to
+  #100,1000,10000,100000,1000000,10000000
+  #use a for loop to run the computePI() function for each number given above
+  #math.pi will return the mathematical value of PI
+  #we then calcualte the difference between our calculated value of PI
+  #and the mathematical value of PI
+  #We are asked to print the results with the number of throws left justified
+  #in the print statement below, num = {0:<10} will left justify with length 10
+  #the 0 in {0:<10} implies the first field in the print which is num
+  #it corresponds to the variable 'number'
+  #Calulated PI = {1:.6f} will print calc_pi with 6 decimal places
+  #The 1 above means the second field in the print
+  #Difference = {2:+.6f} will assign a sign (+ or -) before the value for 'diff'
+  #and print in 6 decimal places
+  #we use the string.format() method to format the output in the print statement
+  
+  for number in (100,1000,10000,100000,1000000,10000000):
+    calc_pi = computePI(number)
+    math_pi = math.pi
+    diff = calc_pi - math_pi
+    print ("num = {0:<10} Calculated PI = {1:.6f} Difference = {2:+.6f}".format(number, calc_pi, diff))
+  print("")
+  print ("Difference = Calculated PI - math.pi")
+  print("")
+
+
+main()
