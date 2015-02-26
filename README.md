@@ -1,2 +1,2 @@
 # python-work
-My programs from CS 303E, written in Python at UT Austin
+Various python programs I worked on in class at UT Austin. 
